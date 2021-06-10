@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AuthWrapper from "./../../components/AuthWrapper";
 import FormInput from "./../../components/forms/FormInput";
 import Button from "./../../components/forms/Button";
+import ProductList from "./../../components/ProductList";
 import firebase from "firebase";
 import "./styles.scss";
 
@@ -11,9 +12,11 @@ const Seller = (props) => {
   const [price, setPrice] = useState("");
   const [fileUrl, setFileUrl] = useState(null);
 
+
   const configAuthWrapper = {
     headline: "Post Item",
   };
+
 
   const resetForm = () => {
     setTitle("");
@@ -50,40 +53,44 @@ const Seller = (props) => {
   };
 
   return (
-    <AuthWrapper {...configAuthWrapper}>
-      <div className="formWrap">
-        <form onSubmit={handleFormSubmit}>
-          <FormInput
-            type="text"
-            name="title"
-            value={title}
-            placeholder="Title"
-            handleChange={(e) => setTitle(e.target.value)}
-          />
+    <div>
+      <AuthWrapper {...configAuthWrapper}>
+        <div className="formWrap">
+          <form onSubmit={handleFormSubmit}>
+            <FormInput
+              type="text"
+              name="title"
+              value={title}
+              placeholder="Title"
+              handleChange={(e) => setTitle(e.target.value)}
+            />
 
-          <FormInput
-            type="text"
-            name="desc"
-            value={desc}
-            placeholder="Description"
-            handleChange={(e) => setDesc(e.target.value)}
-          />
+            <FormInput
+              type="text"
+              name="desc"
+              value={desc}
+              placeholder="Description"
+              handleChange={(e) => setDesc(e.target.value)}
+            />
 
-          <FormInput
-            type="text"
-            name="price"
-            value={price}
-            placeholder="Price"
-            handleChange={(e) => setPrice(e.target.value)}
-          />
+            <FormInput
+              type="text"
+              name="price"
+              value={price}
+              placeholder="Price"
+              handleChange={(e) => setPrice(e.target.value)}
+            />
 
-          <FormInput type="file" name="file" handleChange={onFileChange} />
+            <FormInput type="file" name="file" handleChange={onFileChange} />
 
-          <Button type="submit">Post Item</Button>
-        </form>
-      </div>
-    </AuthWrapper>
-  );
+            <Button type="submit">Post Item</Button>
+          </form>
+        </div>
+      </AuthWrapper>
+      <ProductList/>
+    </div>
+      
+      );
 };
 
 export default Seller;
