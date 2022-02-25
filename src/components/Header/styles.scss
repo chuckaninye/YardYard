@@ -20,6 +20,7 @@
 
       img {
         display: block;
+        position: relative;
         width: 100%;
         margin: 0;
       }
@@ -27,18 +28,20 @@
     .callToActions {
       position: absolute;
       top: 50%;
-      right: 10px;
+      right: 100px;
       -webkit-transform: translateY(-50%);
       -moz-transform: translateY(-50%);
       transform: translateY(-50%);
 
       ul,
-      li {
+      li,
+      span {
         margin: 0;
         padding: 0;
       }
 
-      li {
+      li,
+      span {
         display: inline-block;
         list-style-type: none;
         margin-right: 1.5rem;
@@ -47,7 +50,8 @@
           margin-right: 0;
         }
 
-        a, span {
+        a,
+        span {
           font-size: 1.8rem;
           line-height: 1;
           color: #4e00e4;
@@ -58,7 +62,19 @@
         .logout {
           cursor: pointer;
         }
+
+        .profile {
+          font-size: 28px;
+          color: #6b1eff;
+          margin-right: 0.5rem;
+          padding-top: 0.5rem;
+        }
       }
     }
   }
+}
+
+.inbox {
+  font-size: 21px;
+  color: #6b1eff;
 }

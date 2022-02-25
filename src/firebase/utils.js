@@ -14,10 +14,9 @@ export const firestore = firebase.firestore();
 export const GoogleProvider = new firebase.auth.GoogleAuthProvider();
 GoogleProvider.setCustomParameters({ prompt: "select_account" });
 
-export const handleUserProfile = async (userAuth, additionalData) => {
+export const handleUserProfile = async ({ userAuth, photoURL, additionalData }) => {
   if (!userAuth) return;
   const { uid } = userAuth;
-
   const userRef = firestore.doc(`users/${uid}`);
   const snapshot = await userRef.get();
 
@@ -30,6 +29,7 @@ export const handleUserProfile = async (userAuth, additionalData) => {
         displayName,
         email,
         createdDate: timestamp,
+        photoURL,
         ...additionalData,
       });
     } catch (err) {
@@ -48,4 +48,4 @@ export const getCurrentUser = () => {
   });
 };
 
-export default firebase;
+

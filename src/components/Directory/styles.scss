@@ -4,72 +4,16 @@
     display: inline-block;
     width: 100%;
     height: 100%;
-
-    .item {
-      position: relative;
-      width: 100%;
-      float: left;
-      height: 40%;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-
-      &::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        background: rgba(0, 0, 0, 0.1);
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-      }
-
-      .boxContainer {
-        text-align: center;
-        margin-top: 15%;
-        margin-left: 35%;
-        position: absolute;
-        width: 300px;
-        height: 42px;
-        border: 4px solid #4e00e4;
-        padding: 0px 10px;
-        border-radius: 50px;
-        background-color: white;
-      }
-
-      .elementsContainer {
-        width: 100%;
-        height: 100%;
-        vertical-align: middle;
-      }
-
-      .search {
-        height: 100%;
-        width: 100%;
-        border: none;
-        border-radius: 50px;
-        font-size: 18px;
-        padding: 0px 5px;
-        background: white;
-        color: #424242;
-        font-weight: 500;
-      }
-
-      .search:focus {
-        outline: none;
-      }
-
-      .search-btn {
-        border-radius: 50%;
-        background-color: white;
-        border: none;
-      }
-
-      .search-icon {
-        font-size: 25px;
-        color: #4e00e4;
-      }
-    }
   }
+}
+
+.item {
+  width: 100%;
+  float: left;
+  height: 90%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 0 0 1000000px inset;
 }

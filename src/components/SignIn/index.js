@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import {
   emailSignInStart,
-  googleSignInStart
+  googleSignInStart,
 } from "./../../redux/User/user.actions";
 import "./styles.scss";
 import Buttons from "./../forms/Button";

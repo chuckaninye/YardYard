@@ -1,21 +1,33 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { signOutUserStart } from "./../../redux/User/user.actions";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import "./styles.scss";
 import { Link } from "react-router-dom";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Logo from "./../../assets/logo.png";
+import Dropdown from "./../Dropdown";
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
 });
 
 const Header = (props) => {
-  const dispatch = useDispatch();
   const { currentUser } = useSelector(mapState);
+  const [dropdown, setDropdown] = useState(false);
 
-  const signOut = () => {
-    dispatch(signOutUserStart());
+  const onMouseEnter = () => {
+    if (window.innerWidth < 500) {
+      setDropdown(false);
+    } else {
+      setDropdown(true);
+    }
+  };
+
+  const onMouseLeave = () => {
+    if (window.innerWidth < 500) {
+      setDropdown(false);
+    } else {
+      setDropdown(false);
+    }
   };
 
   return (
@@ -29,19 +41,21 @@ const Header = (props) => {
 
         <div className="callToActions">
           {currentUser && (
-            <ul>
-              <li>
-                <Link to="/dashboard">My Account</Link>
-              </li>
-              <li>
-                <Link to="/seller">Sell</Link>
-              </li>
-              <li>
-                <span className="logout" onClick={() => signOut()}>
-                  Logout
-                </span>
-              </li>
-            </ul>
+            <>
+              <span className="nav-item">
+                <Link to="/chats">
+                  <FontAwesomeIcon icon="inbox" className="inbox" />
+                </Link>
+              </span>
+              <span
+                onMouseEnter={onMouseEnter}
+                onMouseLeave={onMouseLeave}
+                className="nav-item"
+              >
+                <FontAwesomeIcon icon="user-circle" className="profile" />
+                {dropdown && <Dropdown />}
+              </span>
+            </>
           )}
 
           {!currentUser && (

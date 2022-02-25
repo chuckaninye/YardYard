@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { checkUserSession } from "./redux/User/user.actions";
+import "./components/FontAwesomeIcons";
 
 //hoc
 import WithAuth from "./hoc/withAuth";
@@ -16,8 +17,10 @@ import Registration from "./pages/Registration";
 import Login from "./pages/Login";
 import Recovery from "./pages/Recovery";
 import Dashboard from "./pages/Dashboard";
-import Seller from "./pages/Seller";
+import ProductDetails from "./pages/ProductDetails";
 import "./default.scss";
+import Search from "./pages/Search";
+import Chat from "./pages/Chat"
 
 const App = (props) => {
   const dispatch = useDispatch();
@@ -36,6 +39,40 @@ const App = (props) => {
             <HomepageLayout>
               <Homepage />
             </HomepageLayout>
+          )}
+        />
+        <Route
+          exact
+          path="/search"
+          render={() => (
+            <MainLayout>
+              <Search />
+            </MainLayout>
+          )}
+        />
+        <Route
+          path="/search/:filter"
+          render={() => (
+            <MainLayout>
+              <Search />
+            </MainLayout>
+          )}
+        />
+        <Route
+          path="/product/:productID"
+          render={() => (
+            <MainLayout>
+              <ProductDetails />
+            </MainLayout>
+          )}
+        />
+        <Route
+          exact
+          path="/chats"
+          render={() => (
+            <MainLayout>
+              <Chat />
+            </MainLayout>
           )}
         />
         <Route
@@ -70,14 +107,6 @@ const App = (props) => {
                 <Dashboard />
               </MainLayout>
             </WithAuth>
-          )}
-        />
-        <Route
-          path="/seller"
-          render={() => (
-            <MainLayout>
-              <Seller />
-            </MainLayout>
           )}
         />
       </Switch>

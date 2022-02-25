@@ -1,3 +1,50 @@
 .formWrap {
   margin: 3rem auto 0;
 }
+
+label,
+input {
+  color: #333;
+  font-size: 14px;
+}
+label {
+  display: block;
+  margin-top: 1rem;
+  width: 3rem;
+  padding: 0 1em;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Hide the file input using
+opacity */
+[type="file"] {
+  position: absolute;
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+
+input,
+[type="file"] + label {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  text-align: left;
+  padding: 10px;
+  width: 170px;
+  margin: 0;
+  left: 0;
+}
+
+[type="file"] + label {
+  text-align: center;
+  margin-bottom: 0.7rem;
+  /* Decorative */
+  background: #6b1eff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+[type="file"] + label:hover {
+  background: #3399ff;
+}

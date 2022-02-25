@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { signUpUserStart } from "./../../redux/User/user.actions";
+import firebase from "firebase";
 import "./styles.scss";
 
 import AuthWrapper from "./../../components/AuthWrapper";
@@ -22,6 +23,7 @@ const Signup = (props) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const [photoURL, setPhotoURL] = useState();
 
   useEffect(() => {
     if (currentUser) {
@@ -52,9 +54,18 @@ const Signup = (props) => {
         email,
         password,
         confirmPassword,
+        photoURL,
       })
     );
   };
+
+    const onFileChange = async (event) => {
+      const file = event.target.files[0];
+      const storageRef = firebase.storage().ref();
+      const fileRef = storageRef.child(file.name);
+      await fileRef.put(file);
+      setPhotoURL(await fileRef.getDownloadURL());
+    };
 
   const configAuthWrapper = {
     headline: "Register",
@@ -102,6 +113,15 @@ const Signup = (props) => {
             placeholder="Confirm Password"
             handleChange={(e) => setConfirmPassword(e.target.value)}
           />
+          <input
+            className="file-input"
+            type="file"
+            name="fileupload"
+            id="fileupload"
+            onChange={onFileChange}
+            placeholder="Profile Photo"
+          />
+          <label for="fileupload">Add a Profile Photo</label>
 
           <Button type="submit">Register</Button>
         </form>

@@ -1,0 +1,148 @@
+.container {
+    width: 88vw;
+    margin: 0 auto;
+}
+
+.products {
+    background: #f8f9fa;
+    padding: 3.2rem 0;
+}
+
+@media screen and (min-width: 768px) {
+    .product-items{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .product-items{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.product {
+    margin: 2rem;
+    position: relative;
+}
+
+.product-content {
+    background: #ededed;
+    padding: 3rem 0.5rem 2rem 0.5rem;
+    cursor: pointer;
+}
+
+.product-btns {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.4rem;
+    opacity: 1;
+    transition: opacity 0.6s ease;
+}
+
+.product-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;;
+}
+
+.product-desc {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;;
+    font-size: 1.5rem;
+    color: #797D7F;
+}
+
+.read-more {
+    background: transparent;
+    border-color: transparent;
+    text-transform: capitalize;
+    color: hsl(205, 78%, 60%);
+    font-size: 1rem;
+    cursor: pointer;
+    padding-left: 0.25rem;
+}
+
+.hide-read-more {
+    opacity: 0;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.product-price {
+    color: hsl(205, 78%, 60%);
+    background: hsl(205, 100%, 96%);
+    padding: 0.25rem 0.5rem;
+    border-radius: .25rem;
+}
+
+.product-img img{
+    width: 100%;
+    display: block;
+    transition: transform 0.6s ease;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+}
+
+.product:hover .product-img img {
+    transform: scale(1.1);
+}
+
+@media screen and (min-width: 1200px) {
+    .product{
+        margin-right: 1rem;
+        margin-left: 1rem;
+    }
+}
+
+.addToCart-btn, .delete-btn {
+  display: block;
+  width: 100%;
+  font-size: 1.8rem;
+  line-height: 1;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: #6b1eff;
+  background: white;
+  padding: 1rem 0;
+  margin: 0 auto;
+  border-color: #6b1eff;
+  outline: none;
+  cursor: pointer;
+}
+
+.btn-icons {
+    padding: 1rem;
+}
+.checkout-btn {
+    display: block;
+    width: 100%;
+    font-size: 1.8rem;
+    line-height: 1;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: white;
+    background: #797D7F;
+    padding: 1rem 0;
+    margin: 0 auto;
+    border-color: #797D7F;
+    outline: none;
+    cursor: pointer;
+}
+
+.checkout-btn:hover {
+    border-color: #6b1eff;
+    background: #6b1eff;
+    color: white;
+}
+
+.addToCart-btn:hover , .delete-btn:hover{
+    background: #6b1eff;
+    color: white;
+}

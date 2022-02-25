@@ -14,10 +14,11 @@ import {
 } from "./user.actions";
 import { handleResetPasswordAPI } from "./user.helpers";
 
-export function* getSnapshotFromUserAuth(user, additionalData = {}) {
+export function* getSnapshotFromUserAuth(user, photoURL, additionalData = {}) {
   try {
     const userRef = yield call(handleUserProfile, {
       userAuth: user,
+      photoURL,
       additionalData,
     });
     const snapshot = yield userRef.get();
@@ -73,7 +74,7 @@ export function* onSignOutUserStart() {
 }
 
 export function* signUpUser({
-  payload: { displayName, email, password, confirmPassword },
+  payload: { displayName, email, password, confirmPassword, photoURL },
 }) {
   if (password !== confirmPassword) {
     const err = ["Password Don't match"];
@@ -84,7 +85,7 @@ export function* signUpUser({
   try {
     const { user } = yield auth.createUserWithEmailAndPassword(email, password);
     const additionalData = { displayName };
-    yield getSnapshotFromUserAuth(user, additionalData);
+    yield getSnapshotFromUserAuth(user, photoURL, additionalData);
   } catch (err) {
     // console.log(err)
   }
@@ -110,7 +111,8 @@ export function* onResetPasswordStart() {
 export function* googleSignIn() {
   try {
     const { user } = yield auth.signInWithPopup(GoogleProvider);
-    yield getSnapshotFromUserAuth(user);
+    const photoURL = auth.currentUser.photoURL;
+    yield getSnapshotFromUserAuth(user, photoURL);
   } catch (error) {
     // console.log(err)
   }
