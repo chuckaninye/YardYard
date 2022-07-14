@@ -2,7 +2,7 @@ import React from "react";
 import Directory from "./../../components/Directory";
 import "./styles.scss";
 
-const Homepage = (props) => {
+const Homepage = () => {
   return (
     <section className="homepage">
       <Directory />

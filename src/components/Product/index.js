@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Button from "./../forms/Button";
@@ -6,6 +7,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { deleteProductStart } from "../../redux/Products/products.actions";
 import "./styles.scss";
 import Modal from "../Modal";
+
+const mapState = ({ user }) => ({
+  currentUser: user.currentUser,
+});
 
 const Product = ({
   pos,
@@ -20,18 +25,23 @@ const Product = ({
 }) => {
   const dispatch = useDispatch();
   const [readMore, setReadMore] = useState(true);
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
   const [profileImg, setProfileImg] = useState();
   const [profileName, setProfileName] = useState();
+  const [profileEmail, setProfileEmail] = useState();
+  const { currentUser } = useSelector(mapState);
 
-  if (profilePic) profilePic.then(function(response){
-    setProfileImg(response.photoURL);
-    setProfileName(response.displayName);
-  });
+  if (profilePic)
+    profilePic.then(function (response) {
+      setProfileImg(response.photoURL);
+      setProfileName(response.displayName);
+      setProfileEmail(response.email);
+    });
 
   const configModal = {
     profileImg,
     profileName,
+    profileEmail,
     productName,
     productImage,
     productPrice,
@@ -48,8 +58,6 @@ const Product = ({
   return (
     <div key={pos} className="product">
       <div className="product-content">
-        <img src={profileImg} />
-        <span>{profileName}</span>
         <div className="product-img">
           <Link to={`/product/${documentID}`}>
             <img src={productImage} alt="product image" className="img" />
@@ -91,24 +99,34 @@ const Product = ({
       )}
       {productResults ? (
         <div className="product-btns">
-          <Button
-            type="button"
-            className="delete-btn"
-            onClick={() => setIsOpen(true)}
-          >
-            Message Seller
-            <span className="btn-icons">
-              <FontAwesomeIcon icon="envelope"></FontAwesomeIcon>
-            </span>
-          </Button>
+          {!currentUser ? (
+            <Link to="/login" className="btn-link">
+              <Button type="button" className="delete-btn">
+                Message Seller
+                <span className="btn-icons">
+                  <FontAwesomeIcon icon="envelope"></FontAwesomeIcon>
+                </span>
+              </Button>
+            </Link>
+          ) : (
+            <Button
+              type="button"
+              className="delete-btn"
+              onClick={() => setIsOpen(true)}
+            >
+              Message Seller
+              <span className="btn-icons">
+                <FontAwesomeIcon icon="envelope"></FontAwesomeIcon>
+              </span>
+            </Button>
+          )}
 
           <Modal
             open={isOpen}
             onClose={() => setIsOpen(false)}
             {...configModal}
-          >
-            Send A Message To {profileName}
-          </Modal>
+            profileName={profileName}
+          />
         </div>
       ) : (
         ""

@@ -1,15 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { auth, firestore } from "../../firebase/utils";
-import firebase from "firebase";
+import React from "react";
 import "./styles.scss";
 
 const ChatList = ({ selectedChat, chats, userEmail, selectedChatIndex }) => {
-
-  const [profileImg, setProfileImg] = useState();
-  const [profileName, setProfileName] = useState();
-  const [profileArr, setProfileArr] = useState([]);
-  let index = 0;
-  var arr = [];
 
   if (chats.length > 0) {
     return chats.map((chat, index) => {

@@ -9,11 +9,11 @@ const mapState = ({ productsData }) => ({
   products: productsData.products,
 });
 
-const Dashboard = (props) => {
+const Dashboard = () => {
   const { products } = useSelector(mapState);
+  const dispatch = useDispatch();
 
   const { data, queryDoc, isLastPage } = products;
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchProductsStart());

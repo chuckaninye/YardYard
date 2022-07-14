@@ -10,13 +10,14 @@ import {
 } from "./../../redux/Products/products.actions";
 import "./styles.scss";
 
-const PostItem = (props) => {
+const PostItem = () => {
   const dispatch = useDispatch();
   const [productName, setProductName] = useState("");
   const [productDesc, setProductDesc] = useState("");
   const [productPrice, setProductPrice] = useState(0);
   const [fileUrl, setFileUrl] = useState();
   const inputRef = useRef();
+  const textRef = useRef();
 
   useEffect(() => {
     dispatch(fetchProductsStart());
@@ -43,6 +44,8 @@ const PostItem = (props) => {
         productImage: fileUrl,
       })
     );
+    
+    textRef.current.value = "";
     inputRef.current.value = null;
     resetForm();
   };
@@ -53,6 +56,10 @@ const PostItem = (props) => {
     const fileRef = storageRef.child(file.name);
     await fileRef.put(file);
     setFileUrl(await fileRef.getDownloadURL());
+  };
+
+  const handleChange = (e) => {
+    setProductDesc(e.target.value);
   };
 
   return (
@@ -74,7 +81,8 @@ const PostItem = (props) => {
               className="product-desc"
               name="productDesc"
               placeholder="Description"
-              handleChange={(e) => setProductDesc(e.target.value)}
+              onChange={(e) => handleChange(e)}
+              ref={textRef}
             >
               {productDesc}
             </textarea>

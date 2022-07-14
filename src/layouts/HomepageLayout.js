@@ -15,10 +15,15 @@ const HomepageLayout = (props) => {
 
   const { data, queryDoc, isLastPage } = products;
 
+  console.log(products);
 
   useEffect(() => {
-    dispatch(fetchProductsStart());
+    dispatch(
+      fetchProductsStart()
+    );
   }, []);
+
+  console.log(data)
 
   return (
     <div className="fullHeight">

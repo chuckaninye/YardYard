@@ -1,4 +1,4 @@
-import React, { useState, useParams } from "react";
+import React, { useState } from "react";
 import "./styles.scss";
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

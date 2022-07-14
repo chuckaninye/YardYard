@@ -21,16 +21,14 @@ export const handleFetchProducts = ({
   persistProducts = [],
 }) => {
   return new Promise((resolve, reject) => {
-    const pageSize = 4;
+    const pageSize = 6;
 
     let ref = firestore
       .collection("products")
       .orderBy("createdDate")
       .limit(pageSize);
 
-    if (filter) {
-      ref = ref.where("productName", "==", filter);
-    }
+    if (filter) ref = ref.where("productName", "==", filter)
     if (startAfterDoc) ref = ref.startAfter(startAfterDoc);
 
     ref

@@ -17,13 +17,16 @@
 
 @media screen and (min-width: 1200px) {
     .product-items{
+        display: grid;
         grid-template-columns: repeat(3, 1fr);
+        margin: 0;
     }
 }
 
 .product {
     margin: 2rem;
     position: relative;
+    line-height: 1.5;
 }
 
 .product-content {
@@ -145,4 +148,8 @@
 .addToCart-btn:hover , .delete-btn:hover{
     background: #6b1eff;
     color: white;
+}
+
+.btn-link {
+    width: 100%;
 }

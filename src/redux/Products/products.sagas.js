@@ -28,7 +28,6 @@ export function* addProduct({
     });
     yield put(fetchProductsStart());
   } catch (err) {
-    //console.log(err)
   }
 }
 
@@ -41,7 +40,6 @@ export function* fetchProducts({ payload }) {
     const products = yield handleFetchProducts(payload);
     yield put(setProducts(products));
   } catch (err) {
-    //console.log(err)
   }
 }
 
@@ -54,7 +52,6 @@ export function* deleteProduct({ payload }) {
     yield handleDeleteProduct(payload);
     yield put(fetchProductsStart());
   } catch (err) {
-    //console.log(err)
   }
 }
 
@@ -67,7 +64,6 @@ export function* fetchProduct({ payload }) {
     const product = yield handleFetchProduct(payload);
     yield put(setProduct(product));
   } catch (err) {
-    //console.log(err)
   }
 }
 

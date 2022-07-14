@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import Product from "./../Product";
 import LoadMore from "./../LoadMore";
@@ -25,6 +25,7 @@ const ProductResults = ({ data, queryDoc, isLastPage }) => {
         <div className="product-items">
           {data &&
             data.map((product, pos) => {
+              console.log(product)
               const {
                 productName,
                 productImage,

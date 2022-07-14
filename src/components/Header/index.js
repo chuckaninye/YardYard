@@ -10,7 +10,7 @@ const mapState = ({ user }) => ({
   currentUser: user.currentUser,
 });
 
-const Header = (props) => {
+const Header = () => {
   const { currentUser } = useSelector(mapState);
   const [dropdown, setDropdown] = useState(false);
 

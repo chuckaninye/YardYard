@@ -4,7 +4,7 @@ import ChatView from "../../components/ChatView";
 import ChatTitle from "../../components/ChatTitle";
 import ChatTextbox from "../../components/ChatTextbox";
 import firebase from "firebase";
-import { auth, firestore } from "../../firebase/utils";
+import { firestore } from "../../firebase/utils";
 import { useHistory } from "react-router-dom";
 import "./styles.scss";
 
@@ -16,7 +16,6 @@ const Chat = () => {
 
   const selectChat = (chatIndex) => {
     setSelectedChat(chatIndex);
-    console.log(chatIndex);
   };
 
   const submitMessage = (msg) => {

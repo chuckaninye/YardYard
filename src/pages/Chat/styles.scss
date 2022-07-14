@@ -54,6 +54,7 @@
   font-size: 2rem;
   border-radius: 0 10px 0 0;
   box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.75);
+  padding: 10px;
 }
 
 .chat-form {
@@ -108,6 +109,10 @@
 
 .chat-message-list {
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: scroll;
 }
 
 .conversation-message {
@@ -133,8 +138,7 @@
   line-height: 38px;
   color:#6b1eff;
   border: 2.0px solid #6b1eff;
-  display: inline-block;
-  margin-right: 10px;
+  float: right;
 }
 
 .friend-avatar {
@@ -151,7 +155,7 @@
 }
 
 .user-sent {
-  margin-left: auto;
+  margin-right: 10px;
   background-color: #6b1eff;
   color: white;
   width: fit-content;
@@ -172,6 +176,8 @@
 }
 
 .user-msg-container {
+  display: flex;
+  flex-direction: row;
   float: right;
 }
 

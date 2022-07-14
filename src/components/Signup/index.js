@@ -14,7 +14,7 @@ const mapState = ({ user }) => ({
   userErr: user.userErr,
 });
 
-const Signup = (props) => {
+const Signup = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { currentUser, userErr } = useSelector(mapState);

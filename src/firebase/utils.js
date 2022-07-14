@@ -33,7 +33,6 @@ export const handleUserProfile = async ({ userAuth, photoURL, additionalData }) 
         ...additionalData,
       });
     } catch (err) {
-      //console.log(err);
     }
   }
   return userRef;

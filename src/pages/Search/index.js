@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import SearchBar from "../../components/SearchBar";
-import ProductResults from "../../components/ProductResults";
+import SearchResults from "../../components/SearchResults";
 import { fetchProductsStart } from "../../redux/Products/products.actions";
 
 const mapState = ({ productsData }) => ({
@@ -14,11 +13,15 @@ const Search = () => {
   const dispatch = useDispatch();
   const { filter } = useParams();
 
+  const { data, queryDoc, isLastPage } = products;
+
   useEffect(() => {
     dispatch(fetchProductsStart({ filter }));
   }, [filter]);
   
-  return <ProductResults products={products} />;
+  return (
+    <SearchResults data={data} queryDoc={queryDoc} isLastPage={isLastPage} filter={filter}/>
+  );
 };
 
 export default Search;

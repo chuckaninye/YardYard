@@ -1,25 +1,28 @@
 import React from "react";
-import "./styles.scss";
-import Product from "../Product";
 import { useDispatch } from "react-redux";
-import LoadMore from "./../LoadMore";
+import Product from "../Product";
+import LoadMore from "../LoadMore";
 import { fetchProductsStart } from "../../redux/Products/products.actions";
-import { auth } from "./../../firebase/utils";
+import { auth, firestore } from "../../firebase/utils";
 
-const UserProducts = ({ data, queryDoc, isLastPage }) => {
-  const userProducts = true;
+const SearchResults = ({ data, queryDoc, isLastPage, filter }) => {
+  const productResults = true;
   const dispatch = useDispatch();
 
   const handleLoadMore = () => {
     dispatch(
-      fetchProductsStart({ startAfterDoc: queryDoc, persistProducts: data })
+      fetchProductsStart({
+        filter,
+        startAfterDoc: queryDoc,
+        persistProducts: data,
+      })
     );
   };
 
   const configLoadMore = {
     onLoadMoreEvt: handleLoadMore,
   };
-  
+
   return (
     <div className="products">
       <div className="container">
@@ -48,18 +51,21 @@ const UserProducts = ({ data, queryDoc, isLastPage }) => {
                 productName,
                 productPrice,
                 productDesc,
-                userProducts,
+                productResults,
                 documentID,
               };
 
-              return auth.currentUser &&
-                productAdminUserUID === auth.currentUser.uid ? (
-                <>
-                  <Product {...configProduct} />
-                </>
-              ) : (
-                ""
-              );
+              if (auth.currentUser) {
+                return productAdminUserUID !== auth.currentUser.uid ? (
+                  <>
+                    <Product {...configProduct} />
+                  </>
+                ) : (
+                  ""
+                );
+              } else {
+                return <Product {...configProduct} />;
+              }
             })}
         </div>
         {!isLastPage && <LoadMore {...configLoadMore} />}
@@ -68,4 +74,4 @@ const UserProducts = ({ data, queryDoc, isLastPage }) => {
   );
 };
 
-export default UserProducts;
+export default SearchResults;

@@ -5,13 +5,21 @@ const ChatTextbox = ({ submitMessageFn }) => {
   const [chatText, setChatText] = useState(null);
   const inputRef = useRef();
 
-  const userClickedInput = () => console.log("Clicked input");
-
   const submitMessage = () => {
     if (messageValid(chatText)) {
       submitMessageFn(chatText);
       inputRef.current.value = null;
     }
+  };
+
+  const handleUserInput = (e) => {
+    if (e.key === "Enter") {
+      submitMessage()
+    }
+  };
+
+  const handleChange = (e) => {
+    setChatText(e.target.value)
   };
 
   const messageValid = (txt) => txt && txt.replace(/ /g, "").length;
@@ -22,10 +30,8 @@ const ChatTextbox = ({ submitMessageFn }) => {
         <input
           className="chat-input"
           placeholder="Type your message.."
-          onKeyPress={(e) => {
-            e.which === 13 ? submitMessage() : setChatText(e.target.value);
-          }}
-          onFocus={() => userClickedInput()}
+          onKeyPress={(e) => handleUserInput(e)}
+          onChange={(e) => handleChange(e)}
           ref={inputRef}
         />
         <div className="chat-icon">

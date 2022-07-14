@@ -10,7 +10,6 @@ export const handleResetPasswordAPI = (email) => {
       .sendPasswordResetEmail(email, config)
       .then(() => {
         resolve();
-        // props.history.push("/login");
       })
       .catch(() => {
         const err = ["Email not found. Please try again."];

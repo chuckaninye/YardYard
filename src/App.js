@@ -22,7 +22,7 @@ import "./default.scss";
 import Search from "./pages/Search";
 import Chat from "./pages/Chat"
 
-const App = (props) => {
+const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {

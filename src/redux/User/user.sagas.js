@@ -29,7 +29,6 @@ export function* getSnapshotFromUserAuth(user, photoURL, additionalData = {}) {
       })
     );
   } catch (error) {
-    // console.log(err)
   }
 }
 
@@ -38,7 +37,6 @@ export function* emailSignIn({ payload: { email, password } }) {
     const { user } = yield auth.signInWithEmailAndPassword(email, password);
     yield getSnapshotFromUserAuth(user);
   } catch (err) {
-    // console.log(err)
   }
 }
 
@@ -52,7 +50,6 @@ export function* isUserAuthenticated() {
     if (!userAuth) return;
     yield getSnapshotFromUserAuth(userAuth);
   } catch (error) {
-    // console.log(err)
   }
 }
 
@@ -65,7 +62,6 @@ export function* signOutUser() {
     yield auth.signOut();
     yield put(signOutUserSuccess());
   } catch (error) {
-    // console.log(err)
   }
 }
 
@@ -87,7 +83,6 @@ export function* signUpUser({
     const additionalData = { displayName };
     yield getSnapshotFromUserAuth(user, photoURL, additionalData);
   } catch (err) {
-    // console.log(err)
   }
 }
 
@@ -114,7 +109,6 @@ export function* googleSignIn() {
     const photoURL = auth.currentUser.photoURL;
     yield getSnapshotFromUserAuth(user, photoURL);
   } catch (error) {
-    // console.log(err)
   }
 }
 

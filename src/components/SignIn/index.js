@@ -9,13 +9,12 @@ import "./styles.scss";
 import Buttons from "./../forms/Button";
 import AuthWrapper from "./../../components/AuthWrapper";
 import FormInput from "./../../components/forms/FormInput";
-import Button from "./../../components/forms/Button";
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
 });
 
-const SignIn = (props) => {
+const SignIn = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { currentUser } = useSelector(mapState);

@@ -2,8 +2,8 @@ import React from "react";
 import HompePagePic from "./../../assets/homepage.jpg";
 import "./styles.scss";
 import SearchBar from "./../SearchBar";
-import FormInput from "./../forms/FormInput"
-const Directory = (props) => {
+
+const Directory = () => {
   return (
     <div className="directory">
       <div className="wrap">

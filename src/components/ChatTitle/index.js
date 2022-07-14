@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { auth, firestore } from "../../firebase/utils";
 
-const ChatTitle = ({ chat, userEmail }) => {
+const ChatTitle = ({ chat }) => {
   const [profileName, setProfileName] = useState();
 
   if (chat === undefined) {
